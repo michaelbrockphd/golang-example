@@ -9,10 +9,10 @@ const _index_letters_lower_case = 97
 const _index_letters_uppers_case = 65
 
 // Offset so ints from lowercase letters are shifted towards 10.
-const _offset_letters_lower_case = 87
+const _offset_letters_lower_case = _index_letters_lower_case - 10
 
 // Offset so ints from uppercase letters are shifted towards 10.
-const _offset_letters_upper_case = 55
+const _offset_letters_upper_case = _index_letters_uppers_case - 10
 
 // Offset so ints from ASCII numbers are shifted towards 0
 const _offset_numbers = 48
