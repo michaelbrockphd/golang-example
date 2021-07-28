@@ -11,5 +11,32 @@ func InitializeIdentityMatrix(m Matrix, v int64) {
 
 	for i < numRows {
 		m.SetElement(i, i, v)
+
+		i += 1
+	}
+}
+
+func InitializeMatrix(m Matrix) {
+	numRows := m.Rows()
+
+	numCols := m.Columns()
+
+	v := int64(0)
+
+	r := 0
+
+	c := 0
+
+	for r < numRows {
+		c = 0
+
+		for c < numCols {
+			m.SetElement(r, c, v)
+
+			v += 1
+			c += 1
+		}
+
+		r += 1
 	}
 }

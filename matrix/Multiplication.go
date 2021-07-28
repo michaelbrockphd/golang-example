@@ -1,64 +1,48 @@
 package matrix
 
-//
-func MultiplyLinear(a Matrix, b Matrix) Matrix {
-	var rtn Matrix = nil
+func MultiplySegments(a *MatrixRow, b *MatrixColumn) int64 {
+	rtn := int64(0)
+
+	len := a.Length()
+
+	i := 0
+
+	for i < len {
+		rtn += (a.Element(i) * b.Element(i))
+
+		i += 1
+	}
 
 	return rtn
 }
 
-func (a *matrixSubset) Multiply(b *matrixSubset) int64 {
-	result := int64(0)
+func Multiply(a Matrix, b Matrix) Matrix {
+	numR := a.Rows()
+	numC := b.Columns()
 
-	l := a.Length()
+	rtn := NewRowAlignedMatrix(numR, numC)
 
-	for i := 0; i < l; i++ {
-		result += (a.Element(i) * b.Element(i))
-	}
+	idxR := 0
+	idxC := 0
 
-	return result
-}
+	var currR *MatrixRow = nil
+	var currC *MatrixColumn = nil
 
-/*func (a *Matrix) Multiply(b *Matrix) *Matrix {
-	result := NewMatrix(a.Rows(), b.Columns())
+	for idxR < numR {
+		currR = a.Row(idxR)
 
-	numRows := result.Rows()
-	numCols := result.Columns()
+		idxC = 0
 
-	for i := 0; i < numRows; i++ {
-		aRow := a.Row(i)
+		for idxC < numC {
+			currC = b.Column(idxC)
 
-		for j := 0; j < numCols; j++ {
-			bCol := b.Column(j)
+			rtn.SetElement(idxR, idxC, MultiplySegments(currR, currC))
 
-			v := aRow.Multiply(bCol)
-
-			result.SetElement(i, j, v)
+			idxC += 1
 		}
+
+		idxR += 1
 	}
 
-	return result
-}*/
-
-func (a *Matrix) Multiply(b *Matrix) *Matrix {
-	result := NewMatrix(a.Rows(), b.Columns())
-
-	numRows := result.Rows()
-	numCols := result.Columns()
-
-	len := a.Columns()
-
-	for i := 0; i < numRows; i++ {
-		for j := 0; j < numCols; j++ {
-			v := int64(0)
-
-			for k := 0; k < len; k++ {
-				v += a.Element(i, k) * b.Element(k, j)
-			}
-
-			result.SetElement(i, j, v)
-		}
-	}
-
-	return result
+	return rtn
 }

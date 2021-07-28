@@ -26,7 +26,9 @@ func (m *linearMatrix) writeElement(c int, offset int, val int64) {
 
 // Get a given section
 func (m *linearMatrix) section(n int) []int64 {
-	sec := m.elements[n*m.size : m.size]
+	offset := n * m.size
+
+	sec := m.elements[offset : offset+m.size]
 
 	return sec
 }
