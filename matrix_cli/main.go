@@ -31,7 +31,8 @@ func main() {
 	fmt.Fprintln(stdout)
 
 	//b := matrix.NewComputedIdentityMatrix(size, 2)
-	b := matrix.NewRowAlignedMatrix(size, size)
+	//b := matrix.NewRowAlignedMatrix(size, size)
+	b := matrix.NewColumnAlignedMatrix(size, size)
 
 	matrix.InitializeIdentityMatrix(b, 2)
 
