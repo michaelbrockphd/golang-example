@@ -1,5 +1,6 @@
 package matrix
 
+//
 func MultiplyLinear(a Matrix, b Matrix) Matrix {
 	var rtn Matrix = nil
 

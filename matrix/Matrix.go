@@ -20,13 +20,3 @@ type Matrix interface {
 	// Get a given column from the matrix.
 	Column(c int) *MatrixColumn
 }
-
-/*func (m *Matrix) String() string {
-	var b bytes.Buffer
-
-	for _, v := range m.segments {
-		b.WriteString(fmt.Sprintf("%v\n", v))
-	}
-
-	return b.String()
-}*/

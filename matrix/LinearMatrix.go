@@ -1,74 +1,64 @@
 package matrix
 
 // Matrix implementation where all elements are on a continuous array.
+//
+// In effect, it keeps track of a count sections, each of of a given size.
 type linearMatrix struct {
-	rows    int
-	columns int
+	count int
+	size  int
 
 	elements []int64
 }
 
-// Get the number of rows in the matrix.
-func (m *linearMatrix) Rows() int {
-	return m.rows
-}
-
-// Get the number of columns in the matrix.
-func (m *linearMatrix) Columns() int {
-	return m.columns
-}
-
-// Get the value of the specified element.
-func (m *linearMatrix) Element(r int, c int) int64 {
-	i := (r * m.columns) + c
+// Read a given element value.
+func (m *linearMatrix) readElement(c int, offset int) int64 {
+	i := (c * m.size) + offset
 
 	return m.elements[i]
 }
 
-// Set the value of the specified element.
-func (m *linearMatrix) SetElement(r int, c int, v int64) {
-	i := (r * m.columns) + c
+// Write a given element value.
+func (m *linearMatrix) writeElement(c int, offset int, val int64) {
+	i := (c * m.size) + offset
 
-	m.elements[i] = v
+	m.elements[i] = val
 }
 
-// Get a given row form the matrix.
-func (m *linearMatrix) Row(r int) *MatrixRow {
-	tmp := m.elements[r*m.columns : m.columns]
+// Get a given section
+func (m *linearMatrix) section(n int) []int64 {
+	sec := m.elements[n*m.size : m.size]
 
-	row := NewMatrixRowWithElements(tmp)
-
-	return row
+	return sec
 }
 
-// Get a given column from the matrix.
-func (m *linearMatrix) Column(c int) *MatrixColumn {
-	col := make([]int64, m.rows)
-
-	r := 0
+// Get a given cross section
+func (m *linearMatrix) crossSection(n int) []int64 {
+	sec := make([]int64, m.count)
 
 	i := 0
 
-	for r < m.rows {
-		i = (r * m.columns) + c
+	offset := n
 
-		col[r] = m.elements[i]
+	for i < m.count {
+		sec[i] = m.elements[offset]
 
 		i += 1
+
+		offset += m.size
 	}
 
-	return NewMatrixColumnWithElements(col)
+	return sec
 }
 
 // Create a new matrix using a linear array for storage.
-func NewLinearMatrix(rows int, cols int) Matrix {
+func createLinearMatrix(count int, size int) *linearMatrix {
 	rtn := new(linearMatrix)
 
-	rtn.rows = rows
+	rtn.count = count
 
-	rtn.columns = cols
+	rtn.size = size
 
-	rtn.elements = make([]int64, rows*cols)
+	rtn.elements = make([]int64, count*size)
 
 	return rtn
 }
