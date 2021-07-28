@@ -36,21 +36,13 @@ func (m *computedIdentityMatrix) SetElement(r int, c int, v int64) {
 }
 
 // Get a given row form the matrix.
-func (m *computedIdentityMatrix) Row(r int) *MatrixRow {
-	row := make([]int64, m.n)
-
-	row[r] = m.val
-
-	return NewMatrixRowWithElements(row)
+func (m *computedIdentityMatrix) Row(r int) MatrixSegment {
+	return createComputedMatrixSegment(m.n, r, m.val)
 }
 
 // Get a given column from the matrix.
-func (m *computedIdentityMatrix) Column(c int) *MatrixColumn {
-	col := make([]int64, m.n)
-
-	col[c] = m.val
-
-	return NewMatrixColumnWithElements(col)
+func (m *computedIdentityMatrix) Column(c int) MatrixSegment {
+	return createComputedMatrixSegment(m.n, c, m.val)
 }
 
 // Create a new computed identity matrix for the given value and dimensions.

@@ -15,8 +15,8 @@ type Matrix interface {
 	SetElement(r int, c int, v int64)
 
 	// Get a given row form the matrix.
-	Row(r int) *MatrixRow
+	Row(r int) MatrixSegment
 
 	// Get a given column from the matrix.
-	Column(c int) *MatrixColumn
+	Column(c int) MatrixSegment
 }

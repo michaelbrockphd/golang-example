@@ -1,6 +1,6 @@
 package matrix
 
-func MultiplySegments(a *MatrixRow, b *MatrixColumn) int64 {
+func MultiplySegments(a MatrixSegment, b MatrixSegment) int64 {
 	rtn := int64(0)
 
 	len := a.Length()
@@ -25,8 +25,8 @@ func Multiply(a Matrix, b Matrix) Matrix {
 	idxR := 0
 	idxC := 0
 
-	var currR *MatrixRow = nil
-	var currC *MatrixColumn = nil
+	var currR MatrixSegment = nil
+	var currC MatrixSegment = nil
 
 	for idxR < numR {
 		currR = a.Row(idxR)

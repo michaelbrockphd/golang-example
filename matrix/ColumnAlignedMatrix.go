@@ -26,19 +26,19 @@ func (m *ColumnAlignedMatrix) SetElement(r int, c int, v int64) {
 }
 
 // Get a given row form the matrix.
-func (m *ColumnAlignedMatrix) Row(r int) *MatrixRow {
+func (m *ColumnAlignedMatrix) Row(r int) MatrixSegment {
 	sec := m.mtx.crossSection(r)
 
-	row := NewMatrixRowWithElements(sec)
+	row := createSegmentWithElements(sec)
 
 	return row
 }
 
 // Get a given column from the matrix.
-func (m *ColumnAlignedMatrix) Column(c int) *MatrixColumn {
+func (m *ColumnAlignedMatrix) Column(c int) MatrixSegment {
 	sec := m.mtx.section(c)
 
-	col := NewMatrixColumnWithElements(sec)
+	col := createSegmentWithElements(sec)
 
 	return col
 }
