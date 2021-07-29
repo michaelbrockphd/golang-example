@@ -2,10 +2,13 @@ package matrix
 
 // Private details of a computed identity matrix.
 //
-// Rather than store a whole matrix, only the dimensions and identity values are
+// Rather than store a whole matrix, only the dimensions and identity value are
 // kept.
 type computedIdentityMatrix struct {
-	n   int
+	// The number of rows and columns in the matrix (they are the same)
+	n int
+
+	// The identity value (what diagonally appears on the matrix)
 	val int64
 }
 

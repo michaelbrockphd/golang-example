@@ -1,5 +1,6 @@
 package matrix
 
+// Return the product of the two provided matrix segments.
 func MultiplySegments(a MatrixSegment, b MatrixSegment) int64 {
 	rtn := int64(0)
 
@@ -16,6 +17,7 @@ func MultiplySegments(a MatrixSegment, b MatrixSegment) int64 {
 	return rtn
 }
 
+// Return the product of the two provided matrixes.
 func Multiply(a Matrix, b Matrix) Matrix {
 	numR := a.Rows()
 	numC := b.Columns()

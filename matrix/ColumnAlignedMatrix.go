@@ -1,6 +1,6 @@
 package matrix
 
-// Adapter to create a row aligned matrix
+// Adapter to create a column aligned matrix
 type ColumnAlignedMatrix struct {
 	mtx *linearMatrix
 }
@@ -45,7 +45,7 @@ func (m *ColumnAlignedMatrix) Column(c int) MatrixSegment {
 
 // Create a new row aligned matrix
 //
-// In memory, the matrix is kept as a sequence of rows.
+// In memory, the matrix is kept as a sequence of columns.
 func NewColumnAlignedMatrix(rows int, columns int) Matrix {
 	m := new(ColumnAlignedMatrix)
 

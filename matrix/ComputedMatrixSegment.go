@@ -5,10 +5,16 @@ import (
 	"strings"
 )
 
+// Structure declaration for a fully computed matrix segment.
 type computedMatrixSegment struct {
+	// How long the segment is meant to be
 	length int
-	index  int
-	value  int64
+
+	// The row/column index the computed segment is meant to represent.
+	index int
+
+	// The only, identity value that appears in the segment at the required index.
+	value int64
 }
 
 // Return the number of elements in the row/column.
@@ -47,6 +53,7 @@ func (ms *computedMatrixSegment) String() string {
 	return joined
 }
 
+// Create a new computed matrix segment.
 func createComputedMatrixSegment(l int, i int, v int64) *computedMatrixSegment {
 	rtn := new(computedMatrixSegment)
 

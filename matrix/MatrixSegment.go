@@ -1,5 +1,6 @@
 package matrix
 
+// Interface describing all methods a matrix segment object must implement.
 type MatrixSegment interface {
 	// Return the number of elements in the row/column.
 	Length() int

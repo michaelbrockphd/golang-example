@@ -16,6 +16,8 @@ func InitializeIdentityMatrix(m Matrix, v int64) {
 	}
 }
 
+// Take the provided matrix and set each element from left to right and top to
+// bottom with an incremented number starting at 0
 func InitializeMatrix(m Matrix) {
 	numRows := m.Rows()
 
