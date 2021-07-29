@@ -75,3 +75,41 @@ func Test_SliceQueue_strings(t *testing.T) {
 		testQueue(t, arr)
 	}
 }
+
+func benchmarkSliceQueueInts(min int, max int, b *testing.B) {
+	s := new(SliceQueue)
+
+	v := int64(min)
+
+	m := int64(max)
+
+	for v <= m {
+		s.Enqueue(v)
+
+		v += 1
+	}
+
+	for 0 < s.length {
+		s.Dequeue()
+	}
+}
+
+func Benchmark_SliceQueue_10(b *testing.B) {
+	benchmarkSliceQueueInts(0, 10, b)
+}
+
+func Benchmark_SliceQueue_100(b *testing.B) {
+	benchmarkSliceQueueInts(0, 100, b)
+}
+
+func Benchmark_SliceQueue_1000(b *testing.B) {
+	benchmarkSliceQueueInts(0, 1000, b)
+}
+
+func Benchmark_SliceQueue_4G(b *testing.B) {
+	benchmarkSliceQueueInts(0, 1024*4, b)
+}
+
+func Benchmark_SliceQueue_1Gsq(b *testing.B) {
+	benchmarkSliceQueueInts(0, 1024*1024, b)
+}

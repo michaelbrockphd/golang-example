@@ -79,3 +79,41 @@ func Test_SliceStack_strings(t *testing.T) {
 		testPushPop(t, arr)
 	}
 }
+
+func benchmarkSliceStackInts(min int, max int, b *testing.B) {
+	s := new(SliceStack)
+
+	v := int64(min)
+
+	m := int64(max)
+
+	for v <= m {
+		s.Push(v)
+
+		v += 1
+	}
+
+	for 0 < s.length {
+		s.Pop()
+	}
+}
+
+func Benchmark_SliceStack_10(b *testing.B) {
+	benchmarkSliceStackInts(0, 10, b)
+}
+
+func Benchmark_SliceStack_100(b *testing.B) {
+	benchmarkSliceStackInts(0, 100, b)
+}
+
+func Benchmark_SliceStack_1000(b *testing.B) {
+	benchmarkSliceStackInts(0, 1000, b)
+}
+
+func Benchmark_SliceStack_4G(b *testing.B) {
+	benchmarkSliceStackInts(0, 1024*4, b)
+}
+
+func Benchmark_SliceStack_1Gsq(b *testing.B) {
+	benchmarkSliceStackInts(0, 1024*1024, b)
+}
