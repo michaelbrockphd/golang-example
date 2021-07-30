@@ -2,8 +2,8 @@ package collections
 
 import "testing"
 
-func testSliceStackPushPop(t *testing.T, items []interface{}) {
-	subject := new(SliceStack)
+func testNodeStackPushPop(t *testing.T, items []interface{}) {
+	subject := new(NodeStack)
 
 	for _, v := range items {
 		subject.Push(v)
@@ -40,7 +40,7 @@ func testSliceStackPushPop(t *testing.T, items []interface{}) {
 	}
 }
 
-func Test_SliceStack_ints(t *testing.T) {
+func Test_NodeStack_ints(t *testing.T) {
 	testCases := []struct {
 		slice []int
 	}{
@@ -56,11 +56,11 @@ func Test_SliceStack_ints(t *testing.T) {
 			arr[i] = v
 		}
 
-		testSliceStackPushPop(t, arr)
+		testNodeStackPushPop(t, arr)
 	}
 }
 
-func Test_SliceStack_strings(t *testing.T) {
+func Test_NodeStack_strings(t *testing.T) {
 	testCases := []struct {
 		slice []string
 	}{
@@ -76,12 +76,12 @@ func Test_SliceStack_strings(t *testing.T) {
 			arr[i] = v
 		}
 
-		testSliceStackPushPop(t, arr)
+		testNodeStackPushPop(t, arr)
 	}
 }
 
-func benchmarkSliceStackInts(min int, max int, b *testing.B) {
-	s := new(SliceStack)
+func benchmarkNodeStackInts(min int, max int, b *testing.B) {
+	s := new(NodeStack)
 
 	v := int64(min)
 
@@ -98,22 +98,22 @@ func benchmarkSliceStackInts(min int, max int, b *testing.B) {
 	}
 }
 
-func Benchmark_SliceStack_10(b *testing.B) {
-	benchmarkSliceStackInts(0, 10, b)
+func Benchmark_NodeStack_10(b *testing.B) {
+	benchmarkNodeStackInts(0, 10, b)
 }
 
-func Benchmark_SliceStack_100(b *testing.B) {
-	benchmarkSliceStackInts(0, 100, b)
+func Benchmark_NodeStack_100(b *testing.B) {
+	benchmarkNodeStackInts(0, 100, b)
 }
 
-func Benchmark_SliceStack_1000(b *testing.B) {
-	benchmarkSliceStackInts(0, 1000, b)
+func Benchmark_NodeStack_1000(b *testing.B) {
+	benchmarkNodeStackInts(0, 1000, b)
 }
 
-func Benchmark_SliceStack_4G(b *testing.B) {
-	benchmarkSliceStackInts(0, 1024*4, b)
+func Benchmark_NodeStack_4G(b *testing.B) {
+	benchmarkNodeStackInts(0, 1024*4, b)
 }
 
-func Benchmark_SliceStack_1Gsq(b *testing.B) {
-	benchmarkSliceStackInts(0, 1024*1024, b)
+func Benchmark_NodeStack_1Gsq(b *testing.B) {
+	benchmarkNodeStackInts(0, 1024*1024, b)
 }

@@ -18,7 +18,7 @@ type SliceStack struct {
 }
 
 // Get the number of items in the stack.
-func (s *SliceStack) Lenght() int {
+func (s *SliceStack) Length() int {
 	return s.length
 }
 

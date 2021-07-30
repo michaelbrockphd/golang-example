@@ -3,7 +3,7 @@ package collections
 // Interface describing all methods a stack must implement.
 type Stack interface {
 	// Get the number of items in the stack.
-	Lenght() int
+	Length() int
 
 	// The top most item in the stack.
 	Top() interface{}
