@@ -25,7 +25,7 @@ func testSliceQueue(t *testing.T, items []interface{}) {
 			t.Errorf(
 				"Head failed: expected %v but got %v",
 				v,
-				v)
+				h)
 		}
 
 		err := subject.Dequeue()
