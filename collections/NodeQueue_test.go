@@ -2,8 +2,8 @@ package collections
 
 import "testing"
 
-func testSliceQueue(t *testing.T, items []interface{}) {
-	subject := new(SliceQueue)
+func testNodeQueue(t *testing.T, items []interface{}) {
+	subject := new(NodeQueue)
 
 	for _, v := range items {
 		subject.Enqueue(v)
@@ -36,7 +36,7 @@ func testSliceQueue(t *testing.T, items []interface{}) {
 	}
 }
 
-func Test_SliceQueue_ints(t *testing.T) {
+func Test_NodeQueue_ints(t *testing.T) {
 	testCases := []struct {
 		slice []int
 	}{
@@ -52,11 +52,11 @@ func Test_SliceQueue_ints(t *testing.T) {
 			arr[i] = v
 		}
 
-		testSliceQueue(t, arr)
+		testNodeQueue(t, arr)
 	}
 }
 
-func Test_SliceQueue_strings(t *testing.T) {
+func Test_NodeQueue_strings(t *testing.T) {
 	testCases := []struct {
 		slice []string
 	}{
@@ -72,12 +72,12 @@ func Test_SliceQueue_strings(t *testing.T) {
 			arr[i] = v
 		}
 
-		testSliceQueue(t, arr)
+		testNodeQueue(t, arr)
 	}
 }
 
-func benchmarkSliceQueueInts(min int, max int, b *testing.B) {
-	s := new(SliceQueue)
+func benchmarkNodeQueueInts(min int, max int, b *testing.B) {
+	s := new(NodeQueue)
 
 	v := int64(min)
 
@@ -94,22 +94,22 @@ func benchmarkSliceQueueInts(min int, max int, b *testing.B) {
 	}
 }
 
-func Benchmark_SliceQueue_10(b *testing.B) {
-	benchmarkSliceQueueInts(0, 10, b)
+func Benchmark_NodeQueue_10(b *testing.B) {
+	benchmarkNodeQueueInts(0, 10, b)
 }
 
-func Benchmark_SliceQueue_100(b *testing.B) {
-	benchmarkSliceQueueInts(0, 100, b)
+func Benchmark_NodeQueue_100(b *testing.B) {
+	benchmarkNodeQueueInts(0, 100, b)
 }
 
-func Benchmark_SliceQueue_1000(b *testing.B) {
-	benchmarkSliceQueueInts(0, 1000, b)
+func Benchmark_NodeQueue_1000(b *testing.B) {
+	benchmarkNodeQueueInts(0, 1000, b)
 }
 
-func Benchmark_SliceQueue_4G(b *testing.B) {
-	benchmarkSliceQueueInts(0, 1024*4, b)
+func Benchmark_NodeQueue_4G(b *testing.B) {
+	benchmarkNodeQueueInts(0, 1024*4, b)
 }
 
-func Benchmark_SliceQueue_1Gsq(b *testing.B) {
-	benchmarkSliceQueueInts(0, 1024*1024, b)
+func Benchmark_NodeQueue_1Gsq(b *testing.B) {
+	benchmarkNodeQueueInts(0, 1024*1024, b)
 }

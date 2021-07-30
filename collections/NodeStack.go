@@ -4,16 +4,19 @@ import (
 	"errors"
 )
 
+// Simple stack implementation using single-linked nodes.
 type NodeStack struct {
 	length int
 
 	topNode *SingleLinkedNode
 }
 
+// Get the number of items in the stack.
 func (ns *NodeStack) Length() int {
 	return ns.length
 }
 
+// The top most item in the stack.
 func (ns *NodeStack) Top() interface{} {
 	if ns.topNode != nil {
 		return ns.topNode.value
@@ -22,6 +25,7 @@ func (ns *NodeStack) Top() interface{} {
 	return nil
 }
 
+// Add an new item to the stack.
 func (ns *NodeStack) Push(i interface{}) {
 	newTop := NewSingleLinkedNode()
 
@@ -34,6 +38,7 @@ func (ns *NodeStack) Push(i interface{}) {
 	ns.length += 1
 }
 
+// Remove the top most item from the stack.
 func (ns *NodeStack) Pop() error {
 	if ns.length < 1 {
 		return errors.New("cannot pop from an empty stack")
@@ -50,6 +55,7 @@ func (ns *NodeStack) Pop() error {
 	return nil
 }
 
+// Create a new node-backed stack
 func NewNodeStack() Stack {
 	rtn := new(NodeStack)
 
