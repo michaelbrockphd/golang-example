@@ -54,3 +54,18 @@ func (q *SliceQueue) Dequeue() error {
 
 	return nil
 }
+
+// Create a new stack with a slice as its internal structure
+func NewSliceQueue(cap int) Queue {
+	rtn := new(SliceQueue)
+
+	initialCapacity := 0
+
+	if 0 < cap {
+		initialCapacity = cap
+	}
+
+	rtn.items = make([]element, initialCapacity)
+
+	return rtn
+}

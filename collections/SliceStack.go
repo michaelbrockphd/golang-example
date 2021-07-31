@@ -57,10 +57,16 @@ func (s *SliceStack) Pop() error {
 }
 
 // Create a new stack with a slice as its internal structure
-func NewSliceStack() Stack {
+func NewSliceStack(cap int) Stack {
 	rtn := new(SliceStack)
 
-	rtn.items = make([]element, 0)
+	initialCapacity := 0
+
+	if 0 < cap {
+		initialCapacity = cap
+	}
+
+	rtn.items = make([]element, initialCapacity)
 
 	return rtn
 }

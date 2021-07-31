@@ -81,7 +81,7 @@ func Test_SliceStack_strings(t *testing.T) {
 }
 
 func benchmarkSliceStackInts(min int, max int, b *testing.B) {
-	s := new(SliceStack)
+	s := NewSliceStack(0)
 
 	v := int64(min)
 
@@ -93,7 +93,7 @@ func benchmarkSliceStackInts(min int, max int, b *testing.B) {
 		v += 1
 	}
 
-	for 0 < s.length {
+	for 0 < s.Length() {
 		s.Pop()
 	}
 }

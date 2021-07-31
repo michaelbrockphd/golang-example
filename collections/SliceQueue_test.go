@@ -3,7 +3,7 @@ package collections
 import "testing"
 
 func testSliceQueue(t *testing.T, items []interface{}) {
-	subject := new(SliceQueue)
+	subject := NewSliceQueue(0)
 
 	for _, v := range items {
 		subject.Enqueue(v)
