@@ -13,15 +13,6 @@ type concreteMatrixSegment struct {
 	elements []int64
 }
 
-// Create a new matrix part with existing elements
-func createSegmentWithElements(elements []int64) *concreteMatrixSegment {
-	mp := new(concreteMatrixSegment)
-
-	mp.elements = elements
-
-	return mp
-}
-
 // Return the number of elements in the row/column.
 func (ms *concreteMatrixSegment) Length() int {
 	return len(ms.elements)
@@ -46,4 +37,13 @@ func (ms *concreteMatrixSegment) String() string {
 	joined := strings.Join(elements, ", ")
 
 	return joined
+}
+
+// Create a new matrix part with existing elements
+func createSegmentWithElements(elements []int64) *concreteMatrixSegment {
+	mp := new(concreteMatrixSegment)
+
+	mp.elements = elements
+
+	return mp
 }
