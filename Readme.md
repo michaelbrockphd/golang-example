@@ -2,10 +2,6 @@
 
 A mono-repo acting as my port-folio for Golang when conversing with friends, co-workers and people interviewing me for jobs.
 
-## leet_code_attempts
-
-As the name implies, my leet code attempts (successful or otherwise) are kept here for easier sharing.  Even when I go to my own profile it takes some digging to get my past submissions out!
-
 ## brain_teasers
 
 Sometimes, I recall a coding exercise from my university days.  As I revisit and solve them, they will be placed here.
@@ -29,3 +25,7 @@ As a little extra, I toyed with the idea of a computed identity matrix.  Effecti
 While attempting Leet Code exercises, I found out the hard way that Golang does not have a stack nor queue class.
 
 Any programmer worth their salt could easy simulate one via an array and I'm sure there is a module out there that would offer a feature rich implementation of both, I still decided to try my hand at making basic implementations of both.
+
+## search
+
+My attempt at implementing the ol' basic search algorithms.  Or at least provide implementations that are easier to read.
