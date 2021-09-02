@@ -8,8 +8,14 @@ func MultiplySegments(a MatrixSegment, b MatrixSegment) int64 {
 
 	i := 0
 
+	aVal := int64(0)
+	bVal := int64(0)
+
 	for i < len {
-		rtn += (a.Element(i) * b.Element(i))
+		aVal, _ = a.Element(i)
+		bVal, _ = b.Element(i)
+
+		rtn += (aVal * bVal)
 
 		i += 1
 	}
@@ -31,12 +37,12 @@ func Multiply(a Matrix, b Matrix) Matrix {
 	var currC MatrixSegment = nil
 
 	for idxR < numR {
-		currR = a.Row(idxR)
+		currR, _ = a.Row(idxR)
 
 		idxC = 0
 
 		for idxC < numC {
-			currC = b.Column(idxC)
+			currC, _ = b.Column(idxC)
 
 			rtn.SetElement(idxR, idxC, MultiplySegments(currR, currC))
 

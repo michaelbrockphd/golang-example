@@ -19,13 +19,32 @@ func (ms *concreteMatrixSegment) Length() int {
 }
 
 // Get the element in the row/column
-func (ms *concreteMatrixSegment) Element(i int) int64 {
-	return ms.elements[i]
+func (ms *concreteMatrixSegment) Element(i int) (int64, error) {
+	rtn := int64(0)
+	var err error = nil
+
+	if i < 0 || len(ms.elements) <= i {
+		err = NewMatrixSegmentIndexError(i)
+
+	} else {
+		rtn = ms.elements[i]
+	}
+
+	return rtn, err
 }
 
 // Set the element in the row/column
-func (ms *concreteMatrixSegment) SetElement(i int, v int64) {
-	ms.elements[i] = v
+func (ms *concreteMatrixSegment) SetElement(i int, v int64) error {
+	var err error = nil
+
+	if i < 0 || len(ms.elements) <= i {
+		err = NewMatrixSegmentIndexError(i)
+
+	} else {
+		ms.elements[i] = v
+	}
+
+	return err
 }
 
 // Return a string of the row/column.

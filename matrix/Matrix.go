@@ -9,14 +9,14 @@ type Matrix interface {
 	Columns() int
 
 	// Get the value of the specified element.
-	Element(r int, c int) int64
+	Element(r int, c int) (int64, error)
 
 	// Set the value of the specified element.
-	SetElement(r int, c int, v int64)
+	SetElement(r int, c int, v int64) error
 
 	// Get a given row form the matrix.
-	Row(r int) MatrixSegment
+	Row(r int) (MatrixSegment, error)
 
 	// Get a given column from the matrix.
-	Column(c int) MatrixSegment
+	Column(c int) (MatrixSegment, error)
 }

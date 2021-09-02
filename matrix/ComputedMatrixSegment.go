@@ -1,6 +1,7 @@
 package matrix
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -23,19 +24,25 @@ func (ms *computedMatrixSegment) Length() int {
 }
 
 // Get the element in the row/column
-func (ms *computedMatrixSegment) Element(i int) int64 {
+func (ms *computedMatrixSegment) Element(i int) (int64, error) {
 	rtn := int64(0)
+	var err error = nil
 
-	if i == ms.index {
-		rtn = ms.value
+	if i < 0 || ms.length <= i {
+		err = NewMatrixSegmentIndexError(i)
+
+	} else {
+		if i == ms.index {
+			rtn = ms.value
+		}
 	}
 
-	return rtn
+	return rtn, err
 }
 
 // Set the element in the row/column
-func (ms *computedMatrixSegment) SetElement(i int, v int64) {
-	// Throw an error!
+func (ms *computedMatrixSegment) SetElement(i int, v int64) error {
+	return errors.New("Cannot modify a computed matrix segment.")
 }
 
 // Return a string of the row/column.

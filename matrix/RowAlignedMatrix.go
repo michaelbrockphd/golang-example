@@ -16,31 +16,66 @@ func (m *RowAlignedMatrix) Columns() int {
 }
 
 // Get the value of the specified element.
-func (m *RowAlignedMatrix) Element(r int, c int) int64 {
-	return m.mtx.readElement(r, c)
+func (m *RowAlignedMatrix) Element(r int, c int) (int64, error) {
+	rtn := int64(0)
+	var err error = nil
+
+	if r < 0 || c < 0 || m.mtx.count <= r || m.mtx.size <= c {
+		err = NewMatrixIndexError(r, c)
+
+	} else {
+		rtn = m.mtx.readElement(r, c)
+	}
+
+	return rtn, err
 }
 
 // Set the value of the specified element.
-func (m *RowAlignedMatrix) SetElement(r int, c int, v int64) {
-	m.mtx.writeElement(r, c, v)
+func (m *RowAlignedMatrix) SetElement(r int, c int, v int64) error {
+	var err error = nil
+
+	if r < 0 || c < 0 || m.mtx.count <= r || m.mtx.size <= c {
+		err = NewMatrixIndexError(r, c)
+
+	} else {
+		m.mtx.writeElement(r, c, v)
+	}
+
+	return err
 }
 
 // Get a given row form the matrix.
-func (m *RowAlignedMatrix) Row(r int) MatrixSegment {
-	sec := m.mtx.section(r)
+func (m *RowAlignedMatrix) Row(r int) (MatrixSegment, error) {
+	var row MatrixSegment = nil
+	var err error = nil
 
-	row := createSegmentWithElements(sec)
+	if r < 0 || m.mtx.count <= r {
+		err = NewMatrixSegmentIndexError(r)
 
-	return row
+	} else {
+		sec := m.mtx.section(r)
+
+		row = createSegmentWithElements(sec)
+	}
+
+	return row, err
 }
 
 // Get a given column from the matrix.
-func (m *RowAlignedMatrix) Column(c int) MatrixSegment {
-	sec := m.mtx.crossSection(c)
+func (m *RowAlignedMatrix) Column(c int) (MatrixSegment, error) {
+	var col MatrixSegment = nil
+	var err error = nil
 
-	col := createSegmentWithElements(sec)
+	if c < 0 || m.mtx.count <= c {
+		err = NewMatrixSegmentIndexError(c)
 
-	return col
+	} else {
+		sec := m.mtx.crossSection(c)
+
+		col = createSegmentWithElements(sec)
+	}
+
+	return col, err
 }
 
 // Create a new row aligned matrix
