@@ -1,6 +1,9 @@
 package conversion
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func Test_BaseToDecimalConverter_Convert(t *testing.T) {
 	testCases := []struct {
@@ -17,18 +20,26 @@ func Test_BaseToDecimalConverter_Convert(t *testing.T) {
 		{16, "2A", 42},
 	}
 
+	var subTestName string = ""
+
 	for _, testCase := range testCases {
-		subject := NewBaseToDecimalConverter(testCase.base)
+		subTestName = fmt.Sprintf("%v:%v", testCase.base, testCase.input)
 
-		result := subject.Convert(testCase.input)
+		subTestFunc := func(st *testing.T) {
+			subject := NewBaseToDecimalConverter(testCase.base)
 
-		if result != testCase.expected {
-			t.Errorf(
-				"Base %v conversion of %s failed: expected %v but got %v",
-				testCase.base,
-				testCase.input,
-				testCase.expected,
-				result)
+			result := subject.Convert(testCase.input)
+
+			if result != testCase.expected {
+				st.Errorf(
+					"Base %v conversion of %s failed: expected %v but got %v",
+					testCase.base,
+					testCase.input,
+					testCase.expected,
+					result)
+			}
 		}
+
+		t.Run(subTestName, subTestFunc)
 	}
 }
